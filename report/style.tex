@@ -1,0 +1,48 @@
+% Shared layout: title page, executive summary, centred red chapter titles,
+% blue small-caps sections, running header. Compile with pdflatex.
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{charter}
+\usepackage[scaled=0.92]{helvet}
+\usepackage{amsmath,amssymb}
+\usepackage[a4paper,margin=2.3cm,headheight=28pt]{geometry}
+\usepackage{graphicx,booktabs,xcolor,titlesec,fancyhdr,enumitem,listings,float,caption}
+\usepackage[hidelinks]{hyperref}
+\definecolor{navy}{HTML}{0B3A5B}
+\definecolor{accent}{HTML}{D6312B}
+\definecolor{secblue}{HTML}{1E6A8D}
+\definecolor{codebg}{HTML}{F3F1EA}
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{3pt}
+\linespread{1.05}
+\newcommand{\ornament}{\par\vspace{2pt}{\centering\color{accent}\rule{2.2cm}{0.4pt}\hspace{2pt}\rule[-1pt]{1.2cm}{2.2pt}\hspace{2pt}\rule{2.2cm}{0.4pt}\par}\vspace{6pt}}
+\titleformat{\chapter}[display]{\centering\sffamily\bfseries\color{accent}}{\Large\thechapter}{2pt}{\LARGE\MakeUppercase}[\ornament]
+\titlespacing*{\chapter}{0pt}{-10pt}{14pt}
+\titleformat{name=\chapter,numberless}[display]{\centering\sffamily\bfseries\color{accent}}{}{0pt}{\LARGE\MakeUppercase}[\ornament]
+\titlespacing*{name=\chapter,numberless}{0pt}{-10pt}{14pt}
+\titleformat{\section}{\Large\scshape\color{secblue}}{\thesection}{0.6em}{}[{\color{secblue}\vspace{-4pt}\rule{1.1cm}{2pt}}]
+\titleformat{\subsection}{\large\scshape\color{secblue}}{\thesubsection\enspace$\bullet$}{0.5em}{}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\color{navy}\scshape\small\ReportShortTitle}
+\fancyfoot[C]{\color{navy}\rule[3pt]{0.5cm}{0.4pt}\\\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyhead[L]{\color{navy}\scshape\small\ReportShortTitle}\fancyfoot[C]{\color{navy}\rule[3pt]{0.5cm}{0.4pt}\\\thepage}\renewcommand{\headrulewidth}{0pt}}
+\captionsetup{font=small,labelfont=sc}
+\lstset{basicstyle=\ttfamily\footnotesize,backgroundcolor=\color{codebg},frame=none,
+  keywordstyle=\color{accent},commentstyle=\color{gray},numbers=left,
+  numberstyle=\tiny\color{gray},language=Python,breaklines=true,columns=fullflexible,xleftmargin=1.5em}
+\newcommand{\maketitlepage}[5]{% title, subtitle, date, author, repo
+\begin{titlepage}\centering
+\vspace*{5cm}
+{\sffamily\bfseries\color{navy}\fontsize{26}{32}\selectfont\MakeUppercase{#1}\par}
+\vspace{2.2cm}
+{\sffamily\bfseries\color{navy}\Large #2\par}
+\vspace{4.5cm}
+{\color{navy}\large #3\par}
+\vspace{4pt}{\color{navy}\rule{1.2cm}{2pt}\par}\vspace{8pt}
+{\color{navy}\large #4\par}
+\vspace{6pt}{\color{navy}\small\texttt{#5}\par}
+\vfill
+{\color{navy}\small Independent research project\par}
+\end{titlepage}}
